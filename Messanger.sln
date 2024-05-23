@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessangerClientApp", "MessangerClientApp\MessangerClientApp.csproj", "{87E83B2F-D11F-47B3-9C26-AAEE72E284AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerApp", "ServerApp\ServerApp.csproj", "{02D5B0A0-8DE6-49B9-BD8A-9A103A03B4F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87E83B2F-D11F-47B3-9C26-AAEE72E284AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E83B2F-D11F-47B3-9C26-AAEE72E284AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E83B2F-D11F-47B3-9C26-AAEE72E284AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E83B2F-D11F-47B3-9C26-AAEE72E284AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02D5B0A0-8DE6-49B9-BD8A-9A103A03B4F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02D5B0A0-8DE6-49B9-BD8A-9A103A03B4F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02D5B0A0-8DE6-49B9-BD8A-9A103A03B4F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02D5B0A0-8DE6-49B9-BD8A-9A103A03B4F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00528CB6-94E0-49E3-A086-8B56D23A9D83}
+	EndGlobalSection
+EndGlobal

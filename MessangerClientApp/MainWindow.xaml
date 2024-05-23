@@ -1,0 +1,43 @@
+﻿<Window x:Class="MessangerClientApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MessangerClientApp"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Label FontSize="15" FontWeight="Bold" Margin="10">Message : </Label>
+            <Button DockPanel.Dock="Right" Margin="5" Click="Leave_Button_Click">Leave</Button>
+            <Button DockPanel.Dock="Right" Margin="5" Click="Join_Button_Click">Join</Button>
+            <Button DockPanel.Dock="Right" Margin="5" Click="Send_Button_Click">Send</Button>
+            <TextBox x:Name="msgTextBox" Margin="10" VerticalContentAlignment="Center"></TextBox>
+        </DockPanel>
+        <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontSize="25" FontWeight="Bold">Chat</TextBlock>
+        <ListBox ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <materialDesign:Card
+                      Width="200"
+                      Padding="8"
+                      Background="{DynamicResource PrimaryHueLightBrush}"
+                      Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">
+                      <TextBlock
+                        FontSize="16"
+                        Text="{Binding FullInfo}"/>
+                    </materialDesign:Card>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+    </DockPanel>
+</Window>
