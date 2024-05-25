@@ -7,52 +7,29 @@ namespace ServerApp
     public class ChatServer
     {
         const short port = 4040;
-        const string JOIN_CMD = "$<join>";
-        const string LEAVE_CMD = "$<leave>";
-        List<IPEndPoint> members;
-        UdpClient server;
-        IPEndPoint clientEndPoint = null;
+        const string serverAddress = "127.0.0.1";
+        TcpListener server = null;
         public ChatServer()
         {
-            members = new List<IPEndPoint>();
-            server = new UdpClient(port);
-        }
-        private  void AddMember(IPEndPoint clientEndPoint)
-        {
-            members.Add(clientEndPoint);
-            Console.WriteLine("Member was added !");
-        }
-        private void DeleteMember(IPEndPoint clientEndPoint)
-        {
-            members.Remove(clientEndPoint);
-            Console.WriteLine("Member was removed !");
-        }
-        private  void SendToAllMembers(byte[] data)
-        {
-            foreach (var member in members)
-            {
-                server.SendAsync(data, data.Length, member);
-            }
-        }
+            server = new TcpListener(new IPEndPoint(IPAddress.Parse(serverAddress), port));
+        }    
         public void Start()
-        {          
+        {  
+            server.Start();
+            Console.WriteLine("Waiting for connection......");
+
+            TcpClient client = server.AcceptTcpClient();
+            Console.WriteLine("Connected!!!");
+            NetworkStream ns = client.GetStream();
+            StreamReader sr = new StreamReader(ns);
+            StreamWriter sw = new StreamWriter(ns);
             while (true)
             {
-                byte[] data = server.Receive(ref clientEndPoint);
-                string message = Encoding.UTF8.GetString(data);
-                Console.WriteLine($"Got message {message}   from : {clientEndPoint} at {DateTime.Now.ToShortTimeString()}");
-                switch (message)
-                {
-                    case JOIN_CMD:
-                        AddMember(clientEndPoint);
-                        break;
-                        case LEAVE_CMD:
-                        DeleteMember(clientEndPoint);
-                        break;
-                    default:
-                        SendToAllMembers(data);
-                        break;
-                }                
+                string message = sr.ReadLine();
+                Console.WriteLine($"Got message {message}" +
+                    $"   from : {client.Client.LocalEndPoint} at {DateTime.Now.ToShortTimeString()}");
+                sw.WriteLine("Thanks.....");
+                sw.Flush();
             }
         }
     }
