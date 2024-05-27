@@ -9,6 +9,7 @@ namespace ServerApp
         const short port = 4040;
         const string JOIN_CMD = "$<join>";
         const string LEAVE_CMD = "$<leave>";
+        const short max_length = 2;
         List<IPEndPoint> members;
         UdpClient server;
         IPEndPoint clientEndPoint = null;
@@ -19,8 +20,10 @@ namespace ServerApp
         }
         private  void AddMember(IPEndPoint clientEndPoint)
         {
+            
             members.Add(clientEndPoint);
             Console.WriteLine("Member was added !");
+
         }
         private void DeleteMember(IPEndPoint clientEndPoint)
         {
@@ -44,7 +47,16 @@ namespace ServerApp
                 switch (message)
                 {
                     case JOIN_CMD:
-                        AddMember(clientEndPoint);
+                        if (members.Count <= max_length)
+                        {
+                            AddMember(clientEndPoint);
+                        }
+                        else
+                        {
+                            message = "Server is full.You cant connect to this chat";
+                            data = Encoding.UTF8.GetBytes(message);
+                            server.SendAsync(data, data.Length, clientEndPoint);
+                        }
                         break;
                         case LEAVE_CMD:
                         DeleteMember(clientEndPoint);
